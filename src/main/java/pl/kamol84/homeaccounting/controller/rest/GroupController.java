@@ -7,6 +7,7 @@ import pl.kamol84.homeaccounting.entity.Group;
 import pl.kamol84.homeaccounting.repository.GroupRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "/group", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -25,9 +26,9 @@ public class GroupController {
         return groupRepository.findAll();
     }
 
-    @GetMapping("/{name}")
-    public Group getGroup(@PathVariable String name) {
-        return groupRepository.findGroupByName(name);
+    @GetMapping("/{id}")
+    public Optional<Group> getGroup(@PathVariable Long id) {
+        return groupRepository.findById(id);
     }
 
     @PutMapping

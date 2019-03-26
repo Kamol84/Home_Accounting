@@ -1,12 +1,16 @@
 package pl.kamol84.homeaccounting.controller.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.kamol84.homeaccounting.entity.User;
 import pl.kamol84.homeaccounting.repository.UserRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "/user", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -26,9 +30,13 @@ public class UserController {
         return userRepository.findAll();
     }
 
-    @GetMapping("/{login}")
-    public User getUser(@PathVariable String login) {
-        return userRepository.findUserByLogin(login);
+    @GetMapping("/{id}")
+    public ResponseEntity<User> getUser(@PathVariable("id") Long id) throws Exception{
+        Optional<User> user = userRepository.findById(id);
+        if(!user.isPresent()){
+            throw new Exception (id + " - user not found");
+        }
+        return new ResponseEntity<>(user.orElse(null), new HttpHeaders(), HttpStatus.OK);
     }
 
     @PutMapping
@@ -36,9 +44,8 @@ public class UserController {
         return userRepository.save(user);
     }
 
-    @DeleteMapping("/{login}")
-    public void deleteUser(@PathVariable String login) {
-        User user = userRepository.findUserByLogin(login);
-        userRepository.deleteSoft(user.getId());
+    @DeleteMapping("/{id}")
+    public void deleteUser(@PathVariable("id") Long id) {
+        userRepository.deleteSoft(id);
     }
 }
