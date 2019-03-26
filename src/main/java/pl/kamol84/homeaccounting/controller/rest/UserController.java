@@ -31,8 +31,8 @@ public class UserController {
         return userRepository.findUserByLogin(login);
     }
 
-    @PutMapping("/{login}")
-    public User updateUser(@PathVariable String login, @RequestBody User user) {
+    @PutMapping
+    public User updateUser(@RequestBody User user) {
         return userRepository.save(user);
     }
 

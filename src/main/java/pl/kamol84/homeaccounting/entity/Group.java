@@ -15,6 +15,7 @@ public class Group {
     private Long id;
 
     @NotBlank
+    @Column(unique = true)
     private String name;
 
     @OneToMany(fetch = FetchType.EAGER)

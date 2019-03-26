@@ -1,6 +1,7 @@
 package pl.kamol84.homeaccounting.entity;
 
 
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -22,9 +23,11 @@ public class User {
     private String lastName;
 
     @NotBlank
+    @Column(unique = true)
     private String login;
 
     @Email
+    @Column(unique = true)
     private String mail;
 
     private Boolean active;
