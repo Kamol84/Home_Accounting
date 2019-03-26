@@ -7,4 +7,6 @@ import pl.kamol84.homeaccounting.entity.User;
 public interface UserRepository extends JpaRepository<User, Long> {
 
 
+
+    User findUserByLogin(String login);
 }

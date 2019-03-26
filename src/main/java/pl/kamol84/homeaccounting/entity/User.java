@@ -11,6 +11,8 @@ import java.util.Set;
 @Table(name = "user")
 public class User {
 
+    //TODO: fild activ, to soft delete: https://stackoverflow.com/questions/19323557/handling-soft-deletes-with-spring-jpa
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
