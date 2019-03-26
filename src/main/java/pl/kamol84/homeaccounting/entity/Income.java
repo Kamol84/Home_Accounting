@@ -1,7 +1,7 @@
 package pl.kamol84.homeaccounting.entity;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Past;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -14,7 +14,7 @@ public class Income {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotEmpty
+    @DecimalMin("0.01")
     private BigDecimal value;
 
     @Past
