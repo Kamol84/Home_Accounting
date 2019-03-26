@@ -11,8 +11,6 @@ import java.util.Set;
 @Table(name = "user")
 public class User {
 
-    //TODO: fild activ, to soft delete: https://stackoverflow.com/questions/19323557/handling-soft-deletes-with-spring-jpa
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -28,6 +26,8 @@ public class User {
 
     @Email
     private String mail;
+
+    private Boolean active;
 
     @ManyToOne
     private Group group;
@@ -79,6 +79,14 @@ public class User {
 
     public void setMail(String mail) {
         this.mail = mail;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
     public Group getGroup() {
