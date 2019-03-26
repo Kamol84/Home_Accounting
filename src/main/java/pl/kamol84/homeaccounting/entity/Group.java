@@ -1,6 +1,8 @@
 package pl.kamol84.homeaccounting.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.util.HashSet;
@@ -18,10 +20,11 @@ public class Group {
     @Column(unique = true)
     private String name;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @JsonIgnore
+    @OneToMany(mappedBy = "group")
     private Set<User> users = new HashSet<>();
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "group")
     private Set<Expense> expenses = new HashSet<>();
 
     public Group() {

@@ -7,7 +7,6 @@ import pl.kamol84.homeaccounting.entity.Group;
 import pl.kamol84.homeaccounting.repository.GroupRepository;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "/group", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -17,7 +16,7 @@ public class GroupController {
     GroupRepository groupRepository;
 
     @PostMapping
-    public Group group(@RequestBody Group group) {
+    public Group createGroup(@RequestBody Group group) {
         return groupRepository.save(group);
     }
 
@@ -40,5 +39,4 @@ public class GroupController {
     public void deleteGroup(@PathVariable Long id) {
         groupRepository.deleteById(id);
     }
-
 }
