@@ -1,6 +1,8 @@
 package pl.kamol84.homeaccounting.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Past;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -12,8 +14,10 @@ public class Income {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotEmpty
     private BigDecimal value;
 
+    @Past
     private LocalDate created;
 
     private String description;

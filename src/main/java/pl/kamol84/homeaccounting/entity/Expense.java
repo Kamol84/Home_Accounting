@@ -1,26 +1,33 @@
 package pl.kamol84.homeaccounting.entity;
 
 
+import pl.kamol84.homeaccounting.validator.IsAssigneToUserOrGroup;
+import pl.kamol84.homeaccounting.validator.IsPeriodicExpenses;
+
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Past;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "expenses")
+@IsAssigneToUserOrGroup
+@IsPeriodicExpenses
 public class Expense {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotEmpty
     private BigDecimal value;
 
-    private boolean periodicExpenses;
+    private boolean periodicExpenses;       //TODO: check if I need to define default value on false.
 
-    private int dayOfMonth;
+    private Integer dayOfMonth;
 
-    @NotNull
+    @Past
     private LocalDate created;
 
     private String description;
@@ -58,11 +65,11 @@ public class Expense {
         this.periodicExpenses = periodicExpenses;
     }
 
-    public int getDayOfMonth() {
+    public Integer getDayOfMonth() {
         return dayOfMonth;
     }
 
-    public void setDayOfMonth(int dayOfMonth) {
+    public void setDayOfMonth(Integer dayOfMonth) {
         this.dayOfMonth = dayOfMonth;
     }
 
