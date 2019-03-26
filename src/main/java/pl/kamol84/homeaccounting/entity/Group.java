@@ -24,6 +24,7 @@ public class Group {
     @OneToMany(mappedBy = "group")
     private Set<User> users = new HashSet<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "group")
     private Set<Expense> expenses = new HashSet<>();
 

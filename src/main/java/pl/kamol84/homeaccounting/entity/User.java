@@ -2,6 +2,8 @@ package pl.kamol84.homeaccounting.entity;
 
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -35,9 +37,11 @@ public class User {
     @ManyToOne
     private Group group;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "user")
     private Set<Expense> expenses = new HashSet<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "user")
     private Set<Income> incomes = new HashSet<>();
 

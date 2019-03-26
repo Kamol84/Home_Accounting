@@ -5,7 +5,9 @@ import pl.kamol84.homeaccounting.validator.IsAssigneToUserOrGroup;
 import pl.kamol84.homeaccounting.validator.IsPeriodicExpenses;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.Past;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -20,11 +22,13 @@ public class Expense {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotEmpty
+    @DecimalMin("0.01")
     private BigDecimal value;
 
     private boolean periodicExpenses;       //TODO: check if I need to define default value on false.
 
+    @Min(1)
+    @Max(31)
     private Integer dayOfMonth;
 
     @Past
