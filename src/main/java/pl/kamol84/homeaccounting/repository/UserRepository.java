@@ -8,10 +8,12 @@ import org.springframework.data.repository.query.Param;
 import pl.kamol84.homeaccounting.entity.User;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 
     User findUserByLogin(String login);
+    List<User> findAllByActiveIsTrue();
 
     @Transactional
     @Modifying
