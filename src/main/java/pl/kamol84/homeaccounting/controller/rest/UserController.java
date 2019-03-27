@@ -23,7 +23,7 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<User> addUser(@RequestBody @Valid User user, BindingResult result) {
-        if(result.hasErrors()){
+        if (result.hasErrors()) {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
         user.setActive(true);
@@ -39,7 +39,7 @@ public class UserController {
     @GetMapping("/{id}")
     public ResponseEntity<User> getUser(@PathVariable("id") Long id) {
         Optional<User> user = userRepository.findById(id);
-        if(!user.isPresent()){
+        if (!user.isPresent()) {
             return ResponseEntity.notFound().build();
         }
         return new ResponseEntity<>(user.orElse(null), new HttpHeaders(), HttpStatus.OK);
@@ -47,7 +47,7 @@ public class UserController {
 
     @PutMapping
     public ResponseEntity<User> updateUser(@RequestBody @Valid User user, BindingResult result) {
-        if(result.hasErrors()){
+        if (result.hasErrors()) {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
         userRepository.save(user);
@@ -56,10 +56,10 @@ public class UserController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<User> deleteUser(@PathVariable("id") Long id) {
-        if (!userRepository.findById(id).isPresent()){
+        if (!userRepository.findById(id).isPresent()) {
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
-       userRepository.deleteSoft(id);
+        userRepository.deleteSoft(id);
         return new ResponseEntity(userRepository.findById(id), new HttpHeaders(), HttpStatus.I_AM_A_TEAPOT);
     }
 }
