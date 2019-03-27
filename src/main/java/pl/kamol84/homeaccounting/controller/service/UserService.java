@@ -5,7 +5,12 @@ import org.springframework.stereotype.Service;
 import pl.kamol84.homeaccounting.entity.User;
 import pl.kamol84.homeaccounting.repository.UserRepository;
 
+import javax.validation.ConstraintViolation;
+import javax.validation.Validator;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class UserService {
@@ -13,9 +18,18 @@ public class UserService {
     @Autowired
     UserRepository userRepository;
 
-    public void add(User user){
-        user.setActive(true);
-        userRepository.save(user);
+    @Autowired
+    Validator validator;
+
+    public User save(User user) {
+        Set<ConstraintViolation<User>> violations = validator.validate(user);
+        if (!violations.isEmpty()) {
+            throw new BadRequestException("wprowadzono niepoprawne dane");
+        }
+
+        userRepository.save(user);//TODO: sql exception
+
+        return user;
     }
 
     public List<User> getUsers(){
@@ -23,14 +37,15 @@ public class UserService {
     }
 
     public User getUserById(Long id){
-        return userRepository.findById(id).orElse(null);
+        Optional<User> user = userRepository.findById(id);
+        if(!user.isPresent())
+        {
+            throw new NotFoundException("Nie znaleziono użytkownika");
+        }
+        return user.get();
     }
 
-    public User update(User user) {
-        return userRepository.save(user);
-    }
-
-    public  void delete(Long id){
+    public void delete(Long id){
         userRepository.deleteSoft(id);
     }
 }
