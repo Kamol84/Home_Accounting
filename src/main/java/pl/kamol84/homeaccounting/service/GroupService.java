@@ -1,8 +1,10 @@
-package pl.kamol84.homeaccounting.controller.service;
+package pl.kamol84.homeaccounting.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.kamol84.homeaccounting.entity.Group;
+import pl.kamol84.homeaccounting.exceptions.BadRequestException;
+import pl.kamol84.homeaccounting.exceptions.NotFoundException;
 import pl.kamol84.homeaccounting.repository.GroupRepository;
 
 import javax.validation.ConstraintViolation;

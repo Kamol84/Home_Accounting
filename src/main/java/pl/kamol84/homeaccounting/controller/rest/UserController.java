@@ -3,7 +3,7 @@ package pl.kamol84.homeaccounting.controller.rest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-import pl.kamol84.homeaccounting.controller.service.UserService;
+import pl.kamol84.homeaccounting.service.UserService;
 import pl.kamol84.homeaccounting.entity.User;
 
 import java.util.List;
@@ -17,8 +17,7 @@ public class UserController {
 
     @PostMapping
     public User addUser(@RequestBody User user) {
-        user.setActive(true);
-         return userService.save(user);
+        return userService.save(user);
     }
 
     @GetMapping
@@ -32,8 +31,8 @@ public class UserController {
     }
 
     @PutMapping
-    public User updateUser(@RequestBody User user) {
-        return userService.save(user);
+    public User updateUser(@RequestBody User user){
+            return userService.save(user);
     }
 
     @DeleteMapping("/{id}")

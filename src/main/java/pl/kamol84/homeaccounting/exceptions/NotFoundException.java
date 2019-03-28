@@ -1,4 +1,4 @@
-package pl.kamol84.homeaccounting.controller.service;
+package pl.kamol84.homeaccounting.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

@@ -1,13 +1,14 @@
-package pl.kamol84.homeaccounting.controller.service;
+package pl.kamol84.homeaccounting.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.kamol84.homeaccounting.entity.User;
+import pl.kamol84.homeaccounting.exceptions.BadRequestException;
+import pl.kamol84.homeaccounting.exceptions.NotFoundException;
 import pl.kamol84.homeaccounting.repository.UserRepository;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -27,7 +28,7 @@ public class UserService {
             throw new BadRequestException("wprowadzono niepoprawne dane");
         }
 
-        userRepository.save(user);//TODO: sql exception
+        userRepository.save(user);
 
         return user;
     }
