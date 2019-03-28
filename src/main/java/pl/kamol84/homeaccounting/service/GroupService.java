@@ -27,7 +27,7 @@ public class GroupService {
         if (!violations.isEmpty()) {
             throw new BadRequestException("wprowadzono niepoprawne dane");
         }
-
+        groupRepository.save(group);
         return group;
     }
 

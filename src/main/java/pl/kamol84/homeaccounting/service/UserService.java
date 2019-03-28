@@ -27,9 +27,7 @@ public class UserService {
         if (!violations.isEmpty()) {
             throw new BadRequestException("wprowadzono niepoprawne dane");
         }
-
         userRepository.save(user);
-
         return user;
     }
 

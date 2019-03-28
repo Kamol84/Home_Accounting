@@ -3,8 +3,8 @@ package pl.kamol84.homeaccounting.controller.rest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-import pl.kamol84.homeaccounting.service.GroupService;
 import pl.kamol84.homeaccounting.entity.Group;
+import pl.kamol84.homeaccounting.service.GroupService;
 
 import java.util.List;
 
@@ -32,7 +32,7 @@ public class GroupController {
 
     @PutMapping
     public Group updateGroup(@RequestBody Group group) {
-    return groupService.save(group);
+        return groupService.save(group);
     }
 
     @DeleteMapping("/{id}")

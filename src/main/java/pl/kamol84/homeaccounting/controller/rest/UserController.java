@@ -3,8 +3,8 @@ package pl.kamol84.homeaccounting.controller.rest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-import pl.kamol84.homeaccounting.service.UserService;
 import pl.kamol84.homeaccounting.entity.User;
+import pl.kamol84.homeaccounting.service.UserService;
 
 import java.util.List;
 
@@ -31,8 +31,8 @@ public class UserController {
     }
 
     @PutMapping
-    public User updateUser(@RequestBody User user){
-            return userService.save(user);
+    public User updateUser(@RequestBody User user) {
+        return userService.save(user);
     }
 
     @DeleteMapping("/{id}")
