@@ -2,6 +2,7 @@ package pl.kamol84.homeaccounting.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -15,6 +16,7 @@ public class Income {
     private Long id;
 
     @DecimalMin("0.01")
+    @NotNull
     private BigDecimal value;
 
     @Past
@@ -23,6 +25,7 @@ public class Income {
     private String description;
 
     @ManyToOne
+    @NotNull
     private User user;
 
     public Income() {

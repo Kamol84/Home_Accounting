@@ -1,7 +1,5 @@
 package pl.kamol84.homeaccounting.entity;
 
-
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -32,7 +30,7 @@ public class User {
     @Column(unique = true)
     private String mail;
 
-    private Boolean active;
+    private Boolean active = true;
 
     @ManyToOne
     private Group group;

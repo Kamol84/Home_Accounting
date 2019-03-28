@@ -13,7 +13,7 @@ public class IsPeriodicExpensesValidator implements ConstraintValidator<IsPeriod
 
         if (expense.isPeriodicExpenses() == false && expense.getDayOfMonth() == null) {
             return true;
-        } else if (expense.isPeriodicExpenses() == true && 0 < expense.getDayOfMonth() && expense.getDayOfMonth() <= 31) {
+        } else if (expense.isPeriodicExpenses() == true && expense.getDayOfMonth()!= null && 0 < expense.getDayOfMonth() && expense.getDayOfMonth() <= 31) {
             return true;
         }
         return false;
