@@ -25,7 +25,7 @@ public class Expense {
     @DecimalMin("0.01")
     private BigDecimal value;
 
-    private boolean periodicExpenses;       //TODO: check if I need to define default value on false.
+    private boolean periodicExpenses = false;
 
     @Min(1)
     @Max(31)
