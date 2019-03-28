@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import javax.persistence.EntityNotFoundException;
 
 @ControllerAdvice
-public class UserServiceErrorAdvice {
+public class ServiceErrorAdvice {
 
     @ExceptionHandler({DataIntegrityViolationException.class})
     public ResponseEntity handle(DataIntegrityViolationException e) {
