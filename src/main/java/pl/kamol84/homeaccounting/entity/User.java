@@ -33,7 +33,7 @@ public class User {
     private Boolean active = true;
 
     @ManyToOne
-    private Group group;
+    private Household household;
 
     @JsonIgnore
     @OneToMany(mappedBy = "user")
@@ -94,12 +94,12 @@ public class User {
         this.active = active;
     }
 
-    public Group getGroup() {
-        return group;
+    public Household getHousehold() {
+        return household;
     }
 
-    public void setGroup(Group group) {
-        this.group = group;
+    public void setHousehold(Household household) {
+        this.household = household;
     }
 
     public Set<Expense> getExpenses() {

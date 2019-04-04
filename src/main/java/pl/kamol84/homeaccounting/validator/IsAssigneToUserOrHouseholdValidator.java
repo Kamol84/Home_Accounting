@@ -5,15 +5,15 @@ import pl.kamol84.homeaccounting.entity.Expense;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-public class IsAssigneToUserOrGroupValidator implements ConstraintValidator<IsAssigneToUserOrGroup, Expense> {
+public class IsAssigneToUserOrHouseholdValidator implements ConstraintValidator<IsAssigneToUserOrHousehold, Expense> {
 
 
     @Override
     public boolean isValid(Expense expense, ConstraintValidatorContext context) {
 
-        if (expense.getUser() == null && expense.getGroup() == null) {
+        if (expense.getUser() == null && expense.getHousehold() == null) {
             return false;
-        } else if (expense.getUser() != null && expense.getGroup() != null){
+        } else if (expense.getUser() != null && expense.getHousehold() != null){
             return false;
         }
 

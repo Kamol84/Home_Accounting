@@ -7,12 +7,12 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-@Constraint(validatedBy = IsAssigneToUserOrGroupValidator.class)
+@Constraint(validatedBy = IsAssigneToUserOrHouseholdValidator.class)
 @Target(value = {ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface IsAssigneToUserOrGroup {
+public @interface IsAssigneToUserOrHousehold {
 
-    String message() default "{pl.kamol84.homeaccounting.validator.IsAssigneToUserOrGroup}";
+    String message() default "{pl.kamol84.homeaccounting.validator.IsAssigneToUserOrHousehold}";
 
     Class<?>[] groups() default {};
 

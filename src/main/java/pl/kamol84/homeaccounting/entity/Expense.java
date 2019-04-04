@@ -1,7 +1,7 @@
 package pl.kamol84.homeaccounting.entity;
 
 
-import pl.kamol84.homeaccounting.validator.IsAssigneToUserOrGroup;
+import pl.kamol84.homeaccounting.validator.IsAssigneToUserOrHousehold;
 import pl.kamol84.homeaccounting.validator.IsPeriodicExpenses;
 
 import javax.persistence.*;
@@ -14,7 +14,7 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "expenses")
-@IsAssigneToUserOrGroup
+@IsAssigneToUserOrHousehold
 @IsPeriodicExpenses
 public class Expense {
 
@@ -40,7 +40,7 @@ public class Expense {
     private User user;
 
     @ManyToOne
-    private Group group;
+    private Household household;
 
     public Expense() {
     }
@@ -101,11 +101,11 @@ public class Expense {
         this.user = user;
     }
 
-    public Group getGroup() {
-        return group;
+    public Household getHousehold() {
+        return household;
     }
 
-    public void setGroup(Group group) {
-        this.group = group;
+    public void setHousehold(Household household) {
+        this.household = household;
     }
 }

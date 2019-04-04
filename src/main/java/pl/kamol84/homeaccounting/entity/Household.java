@@ -9,8 +9,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "groups")
-public class Group {
+@Table(name = "household")
+public class Household {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,14 +21,14 @@ public class Group {
     private String name;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "group")
+    @OneToMany(mappedBy = "household")
     private Set<User> users = new HashSet<>();
 
     @JsonIgnore
-    @OneToMany(mappedBy = "group")
+    @OneToMany(mappedBy = "household")
     private Set<Expense> expenses = new HashSet<>();
 
-    public Group() {
+    public Household() {
     }
 
     public Long getId() {
