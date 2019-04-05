@@ -12,7 +12,7 @@ import java.util.List;
 @RequestMapping(path = "/household", produces = MediaType.APPLICATION_JSON_VALUE)
 public class HouseholdController {
 
-    private HouseholdService householdService;
+    private final HouseholdService householdService;
 
     @Autowired
     public HouseholdController(HouseholdService householdService) {
@@ -42,6 +42,5 @@ public class HouseholdController {
     @DeleteMapping("/{id}")
     public void deleteHousehold(@PathVariable Long id) {
         householdService.delete(id);
-
     }
 }

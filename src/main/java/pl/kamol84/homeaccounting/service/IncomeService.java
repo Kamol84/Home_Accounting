@@ -16,11 +16,14 @@ import java.util.Set;
 @Service
 public class IncomeService {
 
-    @Autowired
-    IncomeRepository incomeRepository;
+    private final IncomeRepository incomeRepository;
+    private final Validator validator;
 
     @Autowired
-    Validator validator;
+    public IncomeService(IncomeRepository incomeRepository, Validator validator) {
+        this.incomeRepository = incomeRepository;
+        this.validator = validator;
+    }
 
     public Income save(Income income) {
         Set<ConstraintViolation<Income>> violations = validator.validate(income);

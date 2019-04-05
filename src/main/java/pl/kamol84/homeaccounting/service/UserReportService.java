@@ -17,14 +17,16 @@ import java.util.Optional;
 @Service
 public class UserReportService {
 
-    @Autowired
-    UserRepository userRepository;
+    private final UserRepository userRepository;
+    private final ExpenseRepository expenseRepository;
+    private final IncomeRepository incomeRepository;
 
     @Autowired
-    ExpenseRepository expenseRepository;
-
-    @Autowired
-    IncomeRepository incomeRepository;
+    public UserReportService(UserRepository userRepository, ExpenseRepository expenseRepository, IncomeRepository incomeRepository) {
+        this.userRepository = userRepository;
+        this.expenseRepository = expenseRepository;
+        this.incomeRepository = incomeRepository;
+    }
 
     public List<Income> userIncomeFromYearMonth(Long id, Integer year, Integer month) {
         return incomeRepository.userIncomeFromYearMonth(id, year, month);

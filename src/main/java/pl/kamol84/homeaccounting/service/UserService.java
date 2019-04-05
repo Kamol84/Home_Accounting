@@ -16,11 +16,14 @@ import java.util.Set;
 @Service
 public class UserService {
 
-    @Autowired
-    UserRepository userRepository;
+    private final UserRepository userRepository;
+    private final Validator validator;
 
     @Autowired
-    Validator validator;
+    public UserService(UserRepository userRepository, Validator validator) {
+        this.userRepository = userRepository;
+        this.validator = validator;
+    }
 
     public User save(User user) {
         Set<ConstraintViolation<User>> violations = validator.validate(user);

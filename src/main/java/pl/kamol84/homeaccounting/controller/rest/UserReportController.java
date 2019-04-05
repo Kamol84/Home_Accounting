@@ -17,8 +17,12 @@ import java.util.List;
 @RequestMapping(path = "/userreport", produces = MediaType.APPLICATION_JSON_VALUE)
 public class UserReportController {
 
+    private final UserReportService userReportService;
+
     @Autowired
-    UserReportService userReportService;
+    public UserReportController(UserReportService userReportService) {
+        this.userReportService = userReportService;
+    }
 
     @GetMapping("/income/{id}/{year}/{month}")
     public List<Income> findUserIncomes(@PathVariable Long id, @PathVariable Integer year, @PathVariable Integer month){

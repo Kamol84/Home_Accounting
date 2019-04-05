@@ -12,8 +12,12 @@ import java.util.List;
 @RequestMapping(path = "/expense", produces = MediaType.APPLICATION_JSON_VALUE)
 public class ExpenseCotroller {
 
+    private final ExpenseService expenseService;
+
     @Autowired
-    ExpenseService expenseService;
+    public ExpenseCotroller(ExpenseService expenseService) {
+        this.expenseService = expenseService;
+    }
 
     @PostMapping
     public Expense addExpense(@RequestBody Expense expense) {

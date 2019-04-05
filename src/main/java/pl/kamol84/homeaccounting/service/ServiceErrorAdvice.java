@@ -15,8 +15,12 @@ import java.time.LocalDateTime;
 @ControllerAdvice
 public class ServiceErrorAdvice {
 
+    private final ErrorMesage errorMesage;
+
     @Autowired
-    ErrorMesage errorMesage;
+    public ServiceErrorAdvice(ErrorMesage errorMesage) {
+        this.errorMesage = errorMesage;
+    }
 
     @ExceptionHandler({DataIntegrityViolationException.class})
     public ResponseEntity handle(DataIntegrityViolationException e) {

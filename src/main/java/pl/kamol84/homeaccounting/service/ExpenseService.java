@@ -15,11 +15,15 @@ import java.util.Set;
 
 @Service
 public class ExpenseService {
-    @Autowired
-    ExpenseRepository expenseRepository;
+
+    private final ExpenseRepository expenseRepository;
+    private final Validator validator;
 
     @Autowired
-    Validator validator;
+    public ExpenseService(ExpenseRepository expenseRepository, Validator validator) {
+        this.expenseRepository = expenseRepository;
+        this.validator = validator;
+    }
 
     public Expense save(Expense expense) {
         Set<ConstraintViolation<Expense>> violations = validator.validate(expense);

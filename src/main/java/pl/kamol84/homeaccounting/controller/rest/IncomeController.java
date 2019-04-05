@@ -12,8 +12,12 @@ import java.util.List;
 @RequestMapping(path = "/income", produces = MediaType.APPLICATION_JSON_VALUE)
 public class IncomeController {
 
+    private final IncomeService incomeService;
+
     @Autowired
-    IncomeService incomeService;
+    public IncomeController(IncomeService incomeService) {
+        this.incomeService = incomeService;
+    }
 
     @PostMapping
     public Income addIncome(@RequestBody Income income) {

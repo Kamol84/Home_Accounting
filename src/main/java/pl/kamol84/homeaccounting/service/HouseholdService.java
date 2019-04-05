@@ -16,11 +16,14 @@ import java.util.Set;
 @Service
 public class HouseholdService {
 
-    @Autowired
-    HouseholdRepository householdRepository;
+    private final HouseholdRepository householdRepository;
+    private final Validator validator;
 
     @Autowired
-    Validator validator;
+    public HouseholdService(HouseholdRepository householdRepository, Validator validator) {
+        this.householdRepository = householdRepository;
+        this.validator = validator;
+    }
 
     public Household save(Household household) {
         Set<ConstraintViolation<Household>> violations = validator.validate(household);

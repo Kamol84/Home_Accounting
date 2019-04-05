@@ -12,8 +12,12 @@ import java.util.List;
 @RequestMapping(path = "/user", produces = MediaType.APPLICATION_JSON_VALUE)
 public class UserController {
 
+    private final UserService userService;
+
     @Autowired
-    UserService userService;
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     @PostMapping
     public User addUser(@RequestBody User user) {
