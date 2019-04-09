@@ -2,6 +2,7 @@ package pl.kamol84.homeaccounting.controller.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 import pl.kamol84.homeaccounting.entity.Expense;
 import pl.kamol84.homeaccounting.service.ExpenseService;
@@ -10,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "/expense", produces = MediaType.APPLICATION_JSON_VALUE)
+@Secured("ROLE_USER")
 public class ExpenseCotroller {
 
     private final ExpenseService expenseService;

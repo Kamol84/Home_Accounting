@@ -1,6 +1,7 @@
 package pl.kamol84.homeaccounting.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.mindrot.jbcrypt.BCrypt;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -25,6 +26,9 @@ public class User {
     @NotBlank
     @Column(unique = true)
     private String login;
+
+
+    private String password;
 
     @Email
     @Column(unique = true)
@@ -75,7 +79,16 @@ public class User {
     }
 
     public void setLogin(String login) {
+
         this.login = login;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = BCrypt.hashpw(password, BCrypt.gensalt());
     }
 
     public String getMail() {
@@ -84,6 +97,14 @@ public class User {
 
     public void setMail(String mail) {
         this.mail = mail;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
     }
 
     public boolean isActive() {
